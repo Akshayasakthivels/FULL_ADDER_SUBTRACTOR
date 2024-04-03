@@ -48,22 +48,55 @@ Write the detailed procedure here
 Developed by:Akshaya S  
 RegisterNumber:212223220006
 */
+**Full adder**
 ```
-module Fulladdsub(a,b,cin,sum,carry,BO,DIFF);
-input a,b,cin;
-output sum,carry,BO,DIFF;
-assign sum=(a^b^cin);
-assign carry=(a&b)|(a&cin)|(b&cin);
-assign DIFF=(a^b^cin);
-assign BO=(a&b)|((a^b)& cin);
+//full adder 
+module ex04(sum,cout,a,b,cin);
+output sum;
+output cout;
+input a;
+input b;
+input cin;
+
+//internal nets
+wire sl,cl,c2;
+
+//Instantiate logic gate primitives
+xor (sl,a,b);
+and(cl,a,b);
+xor(sum,sl,cin);
+and(c2,sl,cin);
+or(cout,c2,cl);
+
+endmodule
+```
+**Full subractor**
+```
+module ex04a (df,bo,a,b,bin);
+output df;
+output bo;
+input a;
+input b;
+input bin;
+wire w1,w2,w3;
+assign w1=a^b;
+assign w2=(~a&b);
+assign w3=(~w1&bin);
+assign df=w1^bin;
+assign bo=w2|w3;
 endmodule
 ```
 
 **RTL Schematic**
-![op 1](https://github.com/Akshayasakthivels/FULL_ADDER_SUBTRACTOR/assets/144870561/e3a9abab-ae0d-4b6e-b065-91f849810ae5)
+
+![adder -1](https://github.com/Akshayasakthivels/FULL_ADDER_SUBTRACTOR/assets/144870561/99b8e6ba-203f-4a63-a9e7-cdb4f0f74ff1)
+![adder-2](https://github.com/Akshayasakthivels/FULL_ADDER_SUBTRACTOR/assets/144870561/ea1294ba-a6d4-4ef7-a140-edd545cb44c5)
+
 
 **Output Timing Waveform**
-![op2](https://github.com/Akshayasakthivels/FULL_ADDER_SUBTRACTOR/assets/144870561/4377337f-9295-4874-9f78-d01ded9036bd)
+![adder-3](https://github.com/Akshayasakthivels/FULL_ADDER_SUBTRACTOR/assets/144870561/adb4407e-ff01-41a7-a61e-16df014ca7de)
+![adder-4](https://github.com/Akshayasakthivels/FULL_ADDER_SUBTRACTOR/assets/144870561/2740df9f-a191-44fd-a24f-45aa315d003e)
+
 
 **Result:**
 
